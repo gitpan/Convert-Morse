@@ -1,0 +1,6 @@
+Changes
+MANIFEST
+Makefile.PL
+Morse.pm
+README
+t/morsepm.t
