@@ -10,4 +10,9 @@ Revision history for Perl extension Convert::Morse.
 0.03  Mon Feb 19 18:17:02 2001
   fixed the distribution by using 'make dist'
 
-
+0.04  2004-10-24 Tels tests
+  * added missing tokens for ")", "+", and "="
+  * added SIGNATURE
+  * convert morsepm.t to Test::More
+  * remove needless /c in two regexps
+  * require Test::Simple v0.47 in PREREQ

@@ -4,7 +4,9 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     'NAME'		=> 'Convert::Morse',
     'VERSION_FROM'	=> 'lib/Convert/Morse.pm', # finds $VERSION
-    'PREREQ_PM'		=> {}, # e.g., Module::Name => 1.1
+    'PREREQ_PM'		=> {
+		Test::Simple	=> 0.47,
+			}, # e.g., Module::Name => 1.1
     'LIBS'		=> [''], # e.g., '-lm'
     'DEFINE'		=> '', # e.g., '-DHAVE_SOMETHING'
     'INC'		=> '', # e.g., '-I/usr/include/other'

@@ -10,16 +10,16 @@
 
 # German umlaute etc (how to represent in ASCII?).
 # see: http://member.nifty.ne.jp/je1trv/CW_J_e.htm
+# see: http://burks.brighton.ac.uk/burks/foldoc/61/75.htm
 
 package Convert::Morse;
 use vars qw($VERSION);
-$VERSION = 0.03;	# Current version of this package
+$VERSION = 0.04;	# Current version of this package
 require  5.6.0;		# requires this Perl version or later
 
 use Exporter;
 @ISA = qw(Exporter);
-@EXPORT_OK = qw( as_morse as_ascii is_morse is_morsable
-               );
+@EXPORT_OK = qw( as_morse as_ascii is_morse is_morsable);
 #@EXPORT = qw( );
 use strict;
 
@@ -39,7 +39,7 @@ sub as_morse
   return "" if !defined $ascii || $ascii eq ""; 
   undef $error;
   $ascii = uc($ascii);	# 'Helo' => 'HELO'
-  $ascii =~ s/\G$regexp_ascii_morse/_convert($1,$ascii_morse);/gec;
+  $ascii =~ s/\G$regexp_ascii_morse/_convert($1,$ascii_morse);/ge;
   $ascii =~ s/\s$//;  	# remove last space
   $ascii;
   }
@@ -52,7 +52,7 @@ sub as_ascii
   # because regexps expects a space (to avoid testing for \s|$)
   $morse .= ' ' if substr($morse,-1,1) ne ' '; 
   undef $error;
-  $morse =~ s/\G$regexp_morse_ascii/_convert($1,$morse_ascii);/gec;
+  $morse =~ s/\G$regexp_morse_ascii/_convert($1,$morse_ascii);/ge;
   $morse =~ s/\s+/ /g;	# collapse spaces 
   $morse =~ s/\s$//;  	# remove last space
   $morse;
@@ -148,9 +148,12 @@ BEGIN
 	'-'	=>	'-....-',
 	';'	=>	'-.-.-',
 	'/'	=>	'-..-.',
-	'('	=>	'-.--.-',
+	'('	=>	'-.--.',
+	')'	=>	'-.--.-',
 	'"'	=>	'.-..-.',
 	'_'	=>	'..--.-',
+	'='	=>	'-...-',
+	'+'	=>	'.-.-.',
 	qw( 
 	A	.-
 	B	-...
@@ -311,7 +314,7 @@ None known yet.
 
 =head1 AUTHOR
 
-Tels http://bloodgate.com in late 2000.
+Tels http://bloodgate.com in late 2000, 2004.
 
 =cut
 

@@ -1,54 +1,29 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as `perl test.pl'
+#!/usr/bin/perl -w
 
-######################### We start with some black magic to print on failure.
-
-use Test;
+use Test::More;
 use strict;
-use vars qw/$loaded/;
 
 BEGIN 
   {
   $| = 1;
   unshift @INC,'../lib';
   chdir 't' if -d 't';
-  plan tests => 34;
-  }
-END 
-  {
-  print "not ok 1\n" unless $loaded;
+  plan tests => 36;
+  use_ok qw/Convert::Morse/;
   }
 
-use Convert::Morse;
-$loaded = 1;
-ok (1,1);
-
-######################### End of black magic.
-
+#############################################################################
 # test wether some partial inputs are morsable/morse
 
 my (@parts,$try,$rc);
 
-$try = "Convert::Morse::is_morsable('Helo World.');";
-$rc = eval $try;
-print " # '$try' expected 'undef' but got '$rc'\n" 
-   if !ok ($rc,1);
+is (Convert::Morse::is_morsable('Helo World.'), 1, 'Helo World.');
 
-$try = "Convert::Morse::is_morse('- . ----- .-.-.-');";
-$rc = eval $try;
-print " # '$try' expected 'undef' but got '$rc'\n" 
-   if !ok ($rc,1);
+is (Convert::Morse::is_morse('- . ----- .-.-.-'), 1, 'is_morse');
 
-$try = 'Convert::Morse::is_morsable(\'!@$%=\');';
-$rc = eval $try;
-print " # '$try' expected '1' but got '$rc'\n" 
-   if !ok ($rc,undef);
+is (Convert::Morse::is_morsable('!@$%='), undef, 'is_morsable');
 
-$try = "Convert::Morse::is_morse('- . 3');";
-$rc = eval $try;
-print " # '$try' expected '1' but got '$rc'\n" 
-   if !ok ($rc,undef);
-
+is (Convert::Morse::is_morse('- . 3'), undef, 'no is_morse');
 
 while (<DATA>)
   {
@@ -57,19 +32,18 @@ while (<DATA>)
   $parts[0] = '' if !defined $parts[0];
   $parts[1] = '' if !defined $parts[1];
   # test wether convert between 0 and 1 works
+
   $try = "Convert::Morse::as_ascii('$parts[0]');";
   
   $rc = eval "$try";
-  print " # '$try' expected '$parts[1]' but got '$rc'\n" 
-   if !ok ($rc,"$parts[1]");
+  is ($rc,"$parts[1]", "to ascii $parts[1]");
  
   next if $parts[0] =~ /[^-.\s]/; # no reverse
 
   $try = "Convert::Morse::as_morse('$parts[1]');";
   
   $rc = eval "$try";
-  print " # '$try' expected '$parts[0]' but got '$rc'\n" 
-   if !ok ($rc,"$parts[0]");
+  is ($rc,"$parts[0]", "reverse $parts[1]");
 
   }
 
@@ -91,3 +65,4 @@ __END__
 :
 ----- ----- ----- -----:0000
 By - . .-.. ... .-.-.-  in:By TELS. in
+-.--. -.--.- -...- .-.-.:()=+

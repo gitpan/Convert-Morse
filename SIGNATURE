@@ -1,0 +1,33 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.41.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It would check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+
+SHA1 d1c365828a92a43cef1e328465ee4725b3df0079 Changes
+SHA1 7ed69c405c8d06ae5549a6af619f6234adf2f2f1 MANIFEST
+SHA1 f0dd6bb541f6537ee71448bbbdba62c47721258a META.yml
+SHA1 460219d85d68534b9c1711fa6fa7c7436d95d503 Makefile.PL
+SHA1 28a3a94f92a4c6867cf740e0d8fef2255815d3e5 README
+SHA1 edb5ff00c16141d0d4b5d108f50721b2f6438c59 lib/Convert/Morse.pm
+SHA1 0c0f026fb22c9fcfaad44fada94dad6a070889e6 t/morsepm.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.4 (GNU/Linux)
+
+iQEVAwUBQXvN6XcLPEOTuEwVAQGEAQf/QVh5B80pAKkhA3rRUbxyLLJynW2vmnoR
+SMDQrUbU0FyAIYD61nLeLeHIvgDS36gInC1iKmGCgwRrvvFz1c9a9w/0IKCe9EuW
+D3tpzWMcQh8FVfE3r5dtGRdV7Tvcr7m8yHQ92K3hauehgwpHXtaK0XP8x5irtuOL
+7es0e0D72fj5+sKeILoaQa+p0idtiemGQ/AGMBWPSx/u5gRq+1CWHKTayFuSOxDL
+G5eP9UyJGMtOTNuH/jZsgwd2rRiIE5mxunawyZ7OHd/FzMjtWx0P0jXNomjODxOB
+o5jWjDmz1D54Zo4pMBt2trbjax4Vv1xcpshtxowz36YN/QzScOtEiQ==
+=cyvD
+-----END PGP SIGNATURE-----

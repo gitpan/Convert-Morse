@@ -3,4 +3,6 @@ MANIFEST
 Makefile.PL
 lib/Convert/Morse.pm
 README
+SIGNATURE
 t/morsepm.t
+META.yml                                 Module meta-data (added by MakeMaker)
