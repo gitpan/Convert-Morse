@@ -7,3 +7,7 @@ Revision history for Perl extension Convert::Morse.
   added: test suite, error(), is_morse(), is_morsable()
   fixed: some small bugs regarding spaces 
 
+0.03  Mon Feb 19 18:17:02 2001
+  fixed the distribution by using 'make dist'
+
+

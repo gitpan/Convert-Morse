@@ -13,7 +13,7 @@
 
 package Convert::Morse;
 use vars qw($VERSION);
-$VERSION = 0.01;	# Current version of this package
+$VERSION = 0.03;	# Current version of this package
 require  5.6.0;		# requires this Perl version or later
 
 use Exporter;

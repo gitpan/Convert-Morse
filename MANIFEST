@@ -1,6 +1,6 @@
 Changes
 MANIFEST
 Makefile.PL
-Morse.pm
+lib/Convert/Morse.pm
 README
 t/morsepm.t

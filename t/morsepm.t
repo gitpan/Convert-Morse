@@ -10,7 +10,8 @@ use vars qw/$loaded/;
 BEGIN 
   {
   $| = 1;
-  unshift @INC,'..';
+  unshift @INC,'../lib';
+  chdir 't' if -d 't';
   plan tests => 34;
   }
 END 
