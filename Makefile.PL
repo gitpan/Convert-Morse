@@ -1,13 +1,23 @@
-use ExtUtils::MakeMaker;
-# See lib/ExtUtils/MakeMaker.pm for details of how to influence
-# the contents of the Makefile that is written.
-WriteMakefile(
-    'NAME'		=> 'Convert::Morse',
-    'VERSION_FROM'	=> 'lib/Convert/Morse.pm', # finds $VERSION
-    'PREREQ_PM'		=> {
-		Test::Simple	=> 0.47,
-			}, # e.g., Module::Name => 1.1
-    'LIBS'		=> [''], # e.g., '-lm'
-    'DEFINE'		=> '', # e.g., '-DHAVE_SOMETHING'
-    'INC'		=> '', # e.g., '-I/usr/include/other'
-);
+
+# This module is untested with anything older
+require 5.8.1;
+use strict;
+
+# Load the Module::Install bundled in ./inc/
+use inc::Module::Install;
+
+# The name of your distribution
+name		'Convert-Morse';
+
+# Get most of the details from the primary module
+all_from	'lib/Convert/Morse.pm';
+
+requires	'perl'		=> 5.008001;
+build_requires	'Test::More'	=> 0.47;
+
+license		'gpl';
+
+author		'Tels <nospam-abuse@bloodgate.com>';
+
+# Generate the Makefile
+WriteAll;

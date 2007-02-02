@@ -1,12 +1,9 @@
-#!/usr/bin/perl -w
-
 #############################################################################
 # Convert/Morse.pm -- package to convert between ASCII and MORSE code.
 #
-# (C) ..--- ----- ----- ----- by - . .-.. ... .-.-.-  All rights reserved.
 #############################################################################
 
-# todo
+# TODO:
 
 # German umlaute etc (how to represent in ASCII?).
 # see: http://member.nifty.ne.jp/je1trv/CW_J_e.htm
@@ -14,13 +11,12 @@
 
 package Convert::Morse;
 use vars qw($VERSION);
-$VERSION = 0.04;	# Current version of this package
-require  5.6.0;		# requires this Perl version or later
+$VERSION = 0.05;	# Current version of this package
+require  5.8.1;		# requires this Perl version or later
 
 use Exporter;
 @ISA = qw(Exporter);
 @EXPORT_OK = qw( as_morse as_ascii is_morse is_morsable);
-#@EXPORT = qw( );
 use strict;
 
 #############################################################################
@@ -70,7 +66,7 @@ sub _convert
     $error = "Undefined token '$token'"; return $token; 
     }
   #print "'",quotemeta($token),"' => '",quotemeta($sym),"'\n";
-  return $sym;
+  $sym;
   }
 
 sub is_morsable
@@ -78,7 +74,7 @@ sub is_morsable
   # returns true wether input can be completely expressed as morse
   my $text = shift || "";
   my $morse = as_morse($text);
-  return error() ? undef : 1;
+  error() ? undef : 1;
   }
 
 sub is_morse
@@ -86,13 +82,13 @@ sub is_morse
   # returns true wether input is valid Morse code
   my $text = shift || "";
   my $ascii = as_ascii($text);
-  return error() ? undef : 1;
+  error() ? undef : 1;
   }
 
 sub error
   {
   # return last parse error or undef for ok
-  return $error;
+  $error;
   }
 
 #############################################################################
@@ -134,7 +130,7 @@ sub tokens
   # return current token set
   my $copy = {}; 
   foreach (keys %$ascii_morse) { $copy->{$_} = $ascii_morse->{$_}; }
-  return $copy;
+  $copy;
   }
 
 BEGIN
@@ -154,6 +150,8 @@ BEGIN
 	'_'	=>	'..--.-',
 	'='	=>	'-...-',
 	'+'	=>	'.-.-.',
+	'!'	=>	'-.-.--',
+	'@'	=>	'.--.-.',
 	qw( 
 	A	.-
 	B	-...
@@ -218,7 +216,7 @@ BEGIN
 
 =head1 NAME
 
-Convert::Morse - Package to convert between ASCII text and MORSE alphabet.
+Convert::Morse - Convert between ASCII text and MORSE alphabet
 
 =head1 SYNOPSIS
 
@@ -231,7 +229,7 @@ Convert::Morse - Package to convert between ASCII text and MORSE alphabet.
 
 =head1 REQUIRES
 
-perl5.6.0, Exporter
+perl5.8.1, Exporter
 
 =head1 EXPORTS
 
@@ -272,7 +270,7 @@ C<as_morse()>, of C<[-. ]>.
 Unknown tokens in the input are ignored/skipped. In these cases you get 
 the last error message with C<Convert::Morse::error()>. 
 
-=head1 FUNCTIONS
+=head1 METHODS
 
 =head2 B<as_ascii()>
 
@@ -298,6 +296,15 @@ Return wether input is a true Morse code string or not.
 
 Return wether input can be completely expressed as Morse code or not.
 
+=head2 B<tokens()>
+
+	Convert::Morse::tokens( { 'a' => '..-...-..--..' } );
+
+Set/get the hash of the valid and invalid tokens that are used
+in the conversion between ASCII and Morse.
+
+The format is C<< ascii => morse >>.
+
 =head2 B<error()>
 
             error();
@@ -314,7 +321,7 @@ None known yet.
 
 =head1 AUTHOR
 
-Tels http://bloodgate.com in late 2000, 2004.
+Tels http://bloodgate.com in late 2000, 2004, 2007.
 
 =cut
 

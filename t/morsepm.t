@@ -8,7 +8,7 @@ BEGIN
   $| = 1;
   unshift @INC,'../lib';
   chdir 't' if -d 't';
-  plan tests => 36;
+  plan tests => 38;
   use_ok qw/Convert::Morse/;
   }
 
@@ -66,3 +66,4 @@ __END__
 ----- ----- ----- -----:0000
 By - . .-.. ... .-.-.-  in:By TELS. in
 -.--. -.--.- -...- .-.-.:()=+
+.--.-. -.-.--:@!

@@ -1,33 +1,47 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.41.
+signed via the Module::Signature module, version 0.54.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
 
     % cpansign -v
 
-It would check each file's integrity, as well as the signature's
+It will check each file's integrity, as well as the signature's
 validity.  If "==> Signature verified OK! <==" is not displayed,
 the distribution may already have been compromised, and you should
 not run its Makefile.PL or Build.PL.
 
 -----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-SHA1 d1c365828a92a43cef1e328465ee4725b3df0079 Changes
-SHA1 7ed69c405c8d06ae5549a6af619f6234adf2f2f1 MANIFEST
-SHA1 f0dd6bb541f6537ee71448bbbdba62c47721258a META.yml
-SHA1 460219d85d68534b9c1711fa6fa7c7436d95d503 Makefile.PL
-SHA1 28a3a94f92a4c6867cf740e0d8fef2255815d3e5 README
-SHA1 edb5ff00c16141d0d4b5d108f50721b2f6438c59 lib/Convert/Morse.pm
-SHA1 0c0f026fb22c9fcfaad44fada94dad6a070889e6 t/morsepm.t
+SHA1 38dd40d4fe9a8a408648f2f2c1a2a3ac76bbac72 Build.PL
+SHA1 0a60d63b44c204f24e9ef4a9d8e64023c8e86110 CHANGES
+SHA1 02154445bc9831e791c35050f1a018ed99030016 LICENSE
+SHA1 5356fe7b8db89daffc2775073bbb989bc38c5916 MANIFEST
+SHA1 3f06adddc1d079085b91822feb924f9cbbc7df62 META.yml
+SHA1 0b095a749a64a3f358e21c5078e968a59ff9bc9a Makefile.PL
+SHA1 05420209c26423b90246bece00ecbb30191520be README
+SHA1 9b2f9d83bcf77860f53a0c07c90a4a59ad9f5df1 inc/Module/Install.pm
+SHA1 abe32855d75ab13747cf65765af9947b7a8c3057 inc/Module/Install/Base.pm
+SHA1 da9dfbb8ae4a8a8bac0ab9cd7ef7dc89e4cb5dbe inc/Module/Install/Build.pm
+SHA1 95b81d1e91bd634467bf633571eff4420e9c04eb inc/Module/Install/Can.pm
+SHA1 1fe98c63cf9d7271c8cb4183ba230f152df69e26 inc/Module/Install/Fetch.pm
+SHA1 2249171a2b72cd73ff2c0a06597d29f86e5df456 inc/Module/Install/Makefile.pm
+SHA1 381bb98ea3877bba49ae85e7a7ea130645fd3dbf inc/Module/Install/Metadata.pm
+SHA1 0c2118868ef82ac517eb6d9c3bd93e6eb9bbf83e inc/Module/Install/Win32.pm
+SHA1 e827d6d43771032fa3df35c0ad5e5698d0e54cda inc/Module/Install/WriteAll.pm
+SHA1 273b63203a0c53b725590455b1c4bca45566780c lib/Convert/Morse.pm
+SHA1 acfb4662297f4afe409685f706df09c1630fe6ea t/morsepm.t
+SHA1 944279900e1faf577036672fa3a28bae0336eb74 t/pod.t
+SHA1 63c6806a8da896a0fd7ed2479cbea465153cf389 t/pod_cov.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.2.4 (GNU/Linux)
+Version: GnuPG v1.4.2 (GNU/Linux)
 
-iQEVAwUBQXvN6XcLPEOTuEwVAQGEAQf/QVh5B80pAKkhA3rRUbxyLLJynW2vmnoR
-SMDQrUbU0FyAIYD61nLeLeHIvgDS36gInC1iKmGCgwRrvvFz1c9a9w/0IKCe9EuW
-D3tpzWMcQh8FVfE3r5dtGRdV7Tvcr7m8yHQ92K3hauehgwpHXtaK0XP8x5irtuOL
-7es0e0D72fj5+sKeILoaQa+p0idtiemGQ/AGMBWPSx/u5gRq+1CWHKTayFuSOxDL
-G5eP9UyJGMtOTNuH/jZsgwd2rRiIE5mxunawyZ7OHd/FzMjtWx0P0jXNomjODxOB
-o5jWjDmz1D54Zo4pMBt2trbjax4Vv1xcpshtxowz36YN/QzScOtEiQ==
-=cyvD
+iQEVAwUBRcODfHcLPEOTuEwVAQIHGQf+JHH+CvOdx63ZowGGHfdSnCQSVUAHlQP3
+XS1gxeV8S8qRAv2xfC9UNpPsWMWbyUJ2TPcrn86iqxTuQeLU1IJn/CCOVdqQCz9o
+zVYjPz+JOadhLnsvZSY9Z8jTDKwECF86/EaWp+IhPHFB8av/EAP/26iHjO8cY9LK
+MTgd9MuNe0SUM5sJ8jHlx3AgHqcWeH5kenRignVedX7bNUJFPPbOacc/xvxR6NNc
+9IjcCufBiFqxSwjg/tGCy4M+DmyiXmzjY68tP6bzlaQF6l9jqTCNNcqZ/lRG9Tyy
+2nzxCdLnA014KKh8wnzjaephxZV+4PCJhlnla8p3DJbo7AXB/n35tA==
+=1OVB
 -----END PGP SIGNATURE-----
