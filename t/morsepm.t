@@ -8,7 +8,7 @@ BEGIN
   $| = 1;
   unshift @INC,'../lib';
   chdir 't' if -d 't';
-  plan tests => 38;
+  plan tests => 40;
   use_ok qw/Convert::Morse/;
   }
 
@@ -43,9 +43,17 @@ while (<DATA>)
   $try = "Convert::Morse::as_morse('$parts[1]');";
   
   $rc = eval "$try";
-  is ($rc,"$parts[0]", "reverse $parts[1]");
+  is ($rc,"$parts[0]", "reverse $parts[1] to $parts[0]");
 
   }
+
+# test with newlines
+
+my $a = Convert::Morse::as_ascii("-----\n\n -----");
+is ($a, "0\n 0", "as_ascii() with newlines");
+
+my $m = Convert::Morse::as_morse("0\n 0");
+is ($m, "----- \n -----", "as_morse() with newlines");
 
 1;
 

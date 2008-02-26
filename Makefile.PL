@@ -1,6 +1,6 @@
 
 # This module is untested with anything older
-require 5.8.1;
+require 5.008001;
 use strict;
 
 # Load the Module::Install bundled in ./inc/

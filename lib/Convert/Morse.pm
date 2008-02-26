@@ -11,8 +11,8 @@
 
 package Convert::Morse;
 use vars qw($VERSION);
-$VERSION = 0.05;	# Current version of this package
-require  5.8.1;		# requires this Perl version or later
+$VERSION = 0.06;	# Current version of this package
+use 5.008001;		# requires this Perl version or later
 
 use Exporter;
 @ISA = qw(Exporter);
@@ -36,7 +36,7 @@ sub as_morse
   undef $error;
   $ascii = uc($ascii);	# 'Helo' => 'HELO'
   $ascii =~ s/\G$regexp_ascii_morse/_convert($1,$ascii_morse);/ge;
-  $ascii =~ s/\s$//;  	# remove last space
+  $ascii =~ s/\s\z//;  	# remove last space
   $ascii;
   }
 
@@ -49,16 +49,15 @@ sub as_ascii
   $morse .= ' ' if substr($morse,-1,1) ne ' '; 
   undef $error;
   $morse =~ s/\G$regexp_morse_ascii/_convert($1,$morse_ascii);/ge;
-  $morse =~ s/\s+/ /g;	# collapse spaces 
-  $morse =~ s/\s$//;  	# remove last space
+  $morse =~ s/ +/ /;  	# collapse multiple spaces
+  $morse =~ s/\s\z//;  	# remove last space
   $morse;
   }
 
 sub _convert
   {
-  my $token = shift;
+  my ($token,$hash) = @_;
   return '' if !defined $token;
-  my $hash = shift;
   $token =~ s/\s$// if length($token) > 1; # remove trailing space if not ' '
   my $sym = $hash->{$token};
   if (!defined $sym)
@@ -106,22 +105,22 @@ sub tokens
       $ascii_morse->{$_} = $tokens->{$_}.' ';
       $morse_ascii->{$tokens->{$_}} = $_;
       }
-    # preserve spaces
-    # compile a big regexp for token parsing
-    $regexp_ascii_morse = '(' . 
-      join('|', map { quotemeta } keys %$ascii_morse) 
-      . '|.)';
-    $regexp_morse_ascii = '(' .  
-      join('\s|', map { quotemeta } keys %$morse_ascii) 
-      . '\s|.)';
     # fix space handling
-    foreach (" ","\t","\n")
+    foreach (" ")
       {
       $ascii_morse->{$_} = $_; 
       $morse_ascii->{$_} = $_;
       }
-    #print "$regexp_ascii_morse\n";
-    #print "$regexp_morse_ascii\n";
+    # preserve spaces
+    # compile a big regexp for token parsing
+    $regexp_ascii_morse = '(' . 
+      join('|', map { quotemeta } keys %$ascii_morse) 
+      . '|.|[\n\r\t])';
+    $regexp_morse_ascii = '(' .  
+      join('\s|', map { quotemeta } keys %$morse_ascii) 
+      . '\s|.|[\n\r\t])';
+    #print STDERR "$regexp_ascii_morse\n";
+    #print STDERR "$regexp_morse_ascii\n";
     #foreach (keys %$ascii_morse)
     #  {
     #  print "'$_' => '$ascii_morse->{$_}'\n";
@@ -213,6 +212,11 @@ BEGIN
   }
   
 #############################################################################
+1;
+
+__END__
+
+=pod
 
 =head1 NAME
 
@@ -315,14 +319,15 @@ Returns the last error message or undef when no error occured.
 
 Can not yet do Japanese code nor German Umlaute. 
 
-=head1 BUGS
+=head1 LICENSE
 
-None known yet.
+This library is free software; you can redistribute it and/or modify
+it under the terms of the GPL 2.0 or a later version.
+
+See the LICENSE file for a copy of the GPL.
 
 =head1 AUTHOR
 
-Tels http://bloodgate.com in late 2000, 2004, 2007.
+Tels http://bloodgate.com in late 2000, 2004, 2007, 2008.
 
 =cut
-
-1;
